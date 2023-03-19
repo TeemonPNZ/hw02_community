@@ -16,8 +16,8 @@ def index(request):
 
 def group_posts(request, slug):
     template = 'posts/group_list.html'
-    title = 'Лев Толстой – зеркало русской революции.'
     group = get_object_or_404(Group, slug=slug)
+    title = f'Записи сообщества {group}'
     posts = group.posts.all()[:POST_NUM]
     context = {
         'group': group,
