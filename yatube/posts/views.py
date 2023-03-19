@@ -5,7 +5,6 @@ from .models import Post, Group
 POST_NUM = 10
 
 
-# Create your views here.
 def index(request):
     template = 'posts/index.html'
     title = 'Последние обновления на сайте'
@@ -17,12 +16,12 @@ def index(request):
 
 def group_posts(request, slug):
     template = 'posts/group_list.html'
+    title = 'Лев Толстой – зеркало русской революции.'
     group = get_object_or_404(Group, slug=slug)
     posts = group.posts.all()[:POST_NUM]
     context = {
         'group': group,
         'posts': posts,
-        'slug': slug,
-        'title': 'Лев Толстой – зеркало русской революции.'
+        'title': title
     }
     return render(request, template, context)
