@@ -54,7 +54,7 @@ def profile(request, username):
         'page_obj': page_obj,
         'title': title
     }
-    return render(request, title, template, context)
+    return render(request, template, context)
 
 
 def post_detail(request, post_id):
@@ -64,7 +64,7 @@ def post_detail(request, post_id):
     group = Group.objects.get(id=post.group_id)
     author = User.objects.get(id=post.author_id)
     template = 'posts/post_detail.html'
-    title = post.text[0:30]
+    title = f'Пост{post.text[:30]}'
     context = {
         'post': post,
         'posts_count': posts_count,
@@ -72,5 +72,5 @@ def post_detail(request, post_id):
         'author': author,
         'title': title
     }
-    return render(request, title, template, context)
+    return render(request, template, context)
  
